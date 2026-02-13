@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Be My Valentine?</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding-top: 40px;
+    background: #ffe6f0;
+    overflow: hidden;
+  }
+
+  h1 {
+    font-size: 32px;
+    margin-top: 10px;
+  }
+
+  #startGif {
+    width: 220px;
+    border-radius: 15px;
+  }
+
+  button {
+    font-size: 22px;
+    padding: 12px 25px;
+    margin: 15px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  #yesBtn {
+    background-color: #ff4da6;
+    color: white;
+  }
+
+  #noBtn {
+    background-color: #777;
+    color: white;
+    position: relative;
+  }
+
+  #popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #popup h2 {
+    color: white;
+    margin-top: 20px;
+    font-size: 28px;
+  }
+
+  .heart {
+    position: fixed;
+    top: -10px;
+    font-size: 24px;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(110vh);
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<img id="startGif" src="https://media.tenor.com/9Wg9v8sP7JQAAAAC/bubu-dudu.gif" alt="Cute Bear">
+
+<h1 id="question">💖 Vknee ANC, will you be my Valentine? 💖</h1>
+
+<button id="yesBtn">YES</button>
+<button id="noBtn">NO</button>
+
+<div id="popup">
+  <h2>Yayyyy ❤️🥰</h2>
+</div>
+
+<script>
+let noCount = 0;
+let yesSize = 22;
+
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const popup = document.getElementById("popup");
+const question = document.getElementById("question");
+
+yesBtn.onclick = function() {
+  popup.style.display = "flex";
+  startHearts();
+};
+
+noBtn.onclick = function() {
+  noCount++;
+
+  question.innerText = "Are you really sure Vknee ANC? 🥺";
+
+  yesSize += 15;
+  yesBtn.style.fontSize = yesSize + "px";
+  yesBtn.style.padding = (yesSize/2) + "px";
+
+  moveNoButton();
+};
+
+function moveNoButton() {
+  let x = Math.random() * (window.innerWidth - 100);
+  let y = Math.random() * (window.innerHeight - 100);
+
+  noBtn.style.position = "absolute";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+function startHearts() {
+  for (let i = 0; i < 30; i++) {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 5) + "s";
+    document.body.appendChild(heart);
+  }
+}
+</script>
+
+</body>
+</html>
